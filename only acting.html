@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://use.typekit.net/ytc0lkh.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/ytc0lkh.css" />
+    <style>
+      html {
+        overflow-y: auto;
+      }
+      body {
+        background-color: #e9d375;
+        margin: 0;
+        overflow-y: auto;
+      }
+      h1 {
+        font-family: "trajan-sans-pro", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      p {
+        font-family: "roc-grotesk", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0;
+        color: #6e4421;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #757d8f;
+        width: 100%;
+        height: 90px;
+      }
+      .header-grid {
+        display: grid;
+        column-gap: 20px;
+        grid-template-columns: 13fr 2fr 2fr 40fr;
+        height: 100%;
+      }
+
+      .block-a {
+        display: grid;
+      }
+      .block-b {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .block-c {
+        display: grid;
+        align-items: center;
+        justify-items: end;
+      }
+      .logo {
+        height: 60px;
+        margin-left: 25px;
+        margin-top: 15px;
+      }
+      .header-title {
+        margin-right: 30px;
+        cursor: pointer;
+        font-family: "roc-grotesk", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: #81ac63;
+      }
+      .header-title a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .header-title:hover {
+        color: #e9d375;
+        transition: color 0.3s ease;
+      }
+      .header-email {
+        margin-right: 30px;
+        cursor: pointer;
+        font-family: "roc-grotesk", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: #81ac63;
+      }
+      .header-email:hover {
+        color: #e9d375;
+        transition: color 0.3s ease;
+      }
+      .gallery-intro {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin: 110px 22px 5px;
+        font-family: "roc-grotesk", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: #6e4421;
+      }
+      .gallery-intro h2 {
+        margin: 0;
+      }
+      .gallery-video-link {
+        grid-column: 1 / -1;
+        color: inherit;
+      }
+      .gallery {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        height: calc(100vh - 90px);
+        padding: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        transform: translateY(-30px);
+      }
+      .pig {
+        height: 100%;
+        width: auto;
+        display: block;
+      }
+      .gallery::-webkit-scrollbar {
+        display: none;
+      }
+      .gallery-item {
+        position: relative;
+        box-sizing: border-box;
+        flex: 0 0 500px;
+        height: 600px;
+        cursor: pointer;
+        scroll-snap-align: center;
+        background-color: #d0bda5;
+      }
+      .gallery-item-with-image {
+        flex: 0 0 auto;
+        width: max-content;
+      }
+      .gallery-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-family: "roc-grotesk", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: #6e4421;
+      }
+      .gallery-item-with-image .pictuah {
+        width: fit-content;
+      }
+      .pictuah {
+        margin: 20px;
+        height: 70%;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    body>
+    <div class="header">
+      <div class="header-grid">
+        <div class="block-a">
+          <img src="new sequecne.gif" class="logo" alt="Logo" />
+        </div>
+        <div class="block-b">
+          <h1 class="header-title"><a href="work.html">Design</a></h1>
+        </div>
+        <div class="block-c">
+          <h1 class="header-title"><a href="about.html">About</a></h1>
+        </div>
+        <div class="block-c">
+          <h1
+            class="header-email"
+            role="button"
+            tabindex="0"
+            aria-live="polite"
+          >
+            reubensmith545@gmail.com
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-intro">
+      <h2>
+        'only acting' is a short film I created in 2025 exploring the casual depravity of the modern man
+      </h2>
+    
+    </div>
+    <div>
+
+    </div>
+    </main>
+    <script>
+      const gallery = document.querySelector(".gallery");
+      let targetScrollLeft = gallery.scrollLeft;
+      let scrollAnimation = null;
+
+      gallery.addEventListener(
+        "wheel",
+        (event) => {
+          const wheelDelta =
+            Math.abs(event.deltaX) > Math.abs(event.deltaY)
+              ? event.deltaX
+              : event.deltaY;
+
+          if (wheelDelta === 0) {
+            return;
+          }
+
+          event.preventDefault();
+          const wheelDistance =
+            wheelDelta *
+            (event.deltaMode === WheelEvent.DOM_DELTA_LINE
+              ? 16
+              : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+                ? gallery.clientHeight
+                : 1);
+          if (scrollAnimation === null) {
+            targetScrollLeft = gallery.scrollLeft;
+          }
+          targetScrollLeft = Math.max(
+            0,
+            Math.min(
+              gallery.scrollWidth - gallery.clientWidth,
+              targetScrollLeft + wheelDistance * 0.25,
+            ),
+          );
+
+          if (scrollAnimation === null) {
+            const animateScroll = () => {
+              const distance = targetScrollLeft - gallery.scrollLeft;
+
+              if (Math.abs(distance) < 1) {
+                gallery.scrollLeft = targetScrollLeft;
+                scrollAnimation = null;
+                return;
+              }
+
+              gallery.scrollLeft += distance * 0.12;
+              scrollAnimation = requestAnimationFrame(animateScroll);
+            };
+
+            scrollAnimation = requestAnimationFrame(animateScroll);
+          }
+        },
+        { passive: false },
+      );
+      const headerEmail = document.querySelector(".header-email");
+      const emailAddress = headerEmail.textContent.trim();
+
+      async function copyHeaderEmail() {
+        try {
+          await navigator.clipboard.writeText(emailAddress);
+          headerEmail.textContent = "email copied!";
+        } catch (error) {
+          console.error("Could not copy email address to clipboard.", error);
+          headerEmail.textContent = "Unable to copy email";
+        }
+      }
+
+      headerEmail.addEventListener("click", copyHeaderEmail);
+      headerEmail.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          copyHeaderEmail();
+        }
+      });
+    </script>
+  </body>
+</html>
